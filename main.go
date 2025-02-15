@@ -22,6 +22,19 @@ type SensorDataInput struct {
 	RadiationLevel  float64   `json:"radiation_level"`
 }
 
+type InMemoryStore struct {
+	data map[string]SensorData
+	mu   sync.RWMutex
+}
+
+var store = &InMemoryStore{
+	data: make(map[string]SensorData),
+}
+
+const (
+	maxStorageSize      = 1000 
+)
+
 func main() {
 	router := gin.Default()
 	router.GET("/records", getRecord)
