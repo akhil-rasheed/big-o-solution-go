@@ -28,6 +28,10 @@ func main() {
 	router.Run("localhost:8080")
 }
 
+func healthCheck(c *gin.Context) {
+	c.Status(http.StatusOK)
+}
+
 func getRecord(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, sensorData)
 }
