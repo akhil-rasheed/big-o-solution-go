@@ -6,22 +6,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type SensorDataFields struct {
-	ID               uuid.UUID `json:"id"`
-	ModificationCount int      `json:"modification_count"`
-	SeismicActivity   float64  `json:"seismic_activity"`
-	TemperatureC      float64  `json:"temperature_c"`
-	RadiationLevel    float64  `json:"radiation_level"`
+type SensorData struct {
+	ID                uuid.UUID `json:"id"`
+	ModificationCount int       `json:"modification_count"`
+	SeismicActivity   float64   `json:"seismic_activity"`
+	TemperatureC      float64   `json:"temperature_c"`
+	RadiationLevel    float64   `json:"radiation_level"`
+	LocationID        string    `json:"location_id"`
 }
 
-var sensorData = []SensorDataFields{
-	{
-		ID:               uuid.Must(uuid.Parse("6ba7b814-9dad-11d1-80b4-00c04fd430c8")),
-		ModificationCount: 4,
-		SeismicActivity:   23.4,
-		TemperatureC:      32.6,
-		RadiationLevel:    3.22,
-	},
+type SensorDataInput struct {
+	ID              uuid.UUID `json:"id"`
+	SeismicActivity float64   `json:"seismic_activity"`
+	TemperatureC    float64   `json:"temperature_c"`
+	RadiationLevel  float64   `json:"radiation_level"`
 }
 
 func main() {
